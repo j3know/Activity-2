@@ -1,16 +1,23 @@
-# restapi
 
-A new Flutter project.
+User List and User Details
 
-## Getting Started
+Overview :
+This repository contains the list of users and it's details
 
-This project is a starting point for a Flutter application.
+ex. user list
 
-A few resources to get you started if this is your first Flutter project:
+![image](https://github.com/j3know/Activity-2/assets/68595802/aa31d82d-3b49-473d-8fc6-c3a6fa07d26a)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+ex. user details
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![image](https://github.com/j3know/Activity-2/assets/68595802/3bc9433d-ca0c-4ba3-befb-64f1666b8061)
+
+User List
+Description
+the 
+
+Features
+Listing: Display a list of all users. and view it details
+
+
+
