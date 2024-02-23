@@ -5,11 +5,11 @@ import 'package:http/http.dart' as http;
 import 'package:restapi/model/user.dart';
 import 'package:restapi/pages/user.details.dart';
 
-
 class UserListScreen extends StatefulWidget {
   const UserListScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _UserListScreenState createState() => _UserListScreenState();
 }
 
@@ -22,19 +22,14 @@ class _UserListScreenState extends State<UserListScreen> {
     users = fetchUsers();
   }
 
- 
   Future<List<User>> fetchUsers() async {
-   
     final response =
-        await http.get(Uri.parse('http://10.0.2.2:3000/api'));
+        await http.get(Uri.parse('http://192.168.1.211:3001/usergenerator'));
 
-    
     if (response.statusCode == 200) {
-   
       List jsonResponse = json.decode(response.body);
       return jsonResponse.map((user) => User.fromJson(user)).toList();
     } else {
-   
       throw Exception('Failed to load users');
     }
   }
