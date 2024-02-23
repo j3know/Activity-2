@@ -19,7 +19,7 @@ class UserDetailsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('ID: ${user.id}'),
+             Text('ID: ${user.id}'),
             const SizedBox(height: 8),
             Text('Name: ${user.name}'),
             const SizedBox(height: 8),
@@ -46,7 +46,9 @@ class UserDetailsScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => UserTodoScreen(todos: user.todos),
+                      builder: (context) => const UserTodoScreen(
+                        todos: [],
+                      ),
                     ),
                   );
                 },

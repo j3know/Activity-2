@@ -1,7 +1,6 @@
 part 'address.dart';
 part 'company.dart';
 part 'geo.dart';
-part 'todos.dart';
 
 class User {
   final int id;
@@ -12,7 +11,6 @@ class User {
   final String website;
   final Address address;
   final Company company;
-  final List<Todo> todos;
 
   User({
     required this.id,
@@ -23,14 +21,10 @@ class User {
     required this.website,
     required this.address,
     required this.company,
-    required this.todos,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     // Extracting todos from JSON
-    List<dynamic> todosJson = json['todos'];
-    List<Todo> todos =
-        todosJson.map<Todo>((todo) => Todo.fromJson(todo)).toList();
 
     return User(
       id: json['id'],
@@ -41,7 +35,6 @@ class User {
       website: json['website'],
       address: Address.fromJson(json['address']),
       company: Company.fromJson(json['company']),
-      todos: todos,
     );
   }
 }

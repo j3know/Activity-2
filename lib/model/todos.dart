@@ -1,8 +1,6 @@
-part of 'user.dart';
-
 class Todo {
   final String title;
-  final String finished;
+  final bool finished;
 
   Todo({
     required this.title,

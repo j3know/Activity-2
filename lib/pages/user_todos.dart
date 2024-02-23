@@ -1,10 +1,35 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:restapi/model/user.dart';
+import 'package:http/http.dart' as http;
+import 'package:restapi/model/todos.dart';
 
-class UserTodoScreen extends StatelessWidget {
-  final List<Todo> todos;
+class UserTodoScreen extends StatefulWidget {
+  const UserTodoScreen({Key? key, required List todos});
 
-  const UserTodoScreen({Key? key, required this.todos}) : super(key: key);
+  @override
+  _UserTodoScreenState createState() => _UserTodoScreenState();
+}
+
+class _UserTodoScreenState extends State<UserTodoScreen> {
+  late Future<List<Todo>> _todosFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _todosFuture = fetchTodos();
+  }
+
+  Future<List<Todo>> fetchTodos() async {
+    final response =
+        await http.get(Uri.parse('http://192.168.1.211:3001/todos'));
+    if (response.statusCode == 200) {
+      List<dynamic> data = jsonDecode(response.body)['todos'];
+      List<Todo> todos = data.map((item) => Todo.fromJson(item)).toList();
+      return todos;
+    } else {
+      throw Exception('Failed to load todos');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,21 +37,28 @@ class UserTodoScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('User ToDos'),
       ),
-      body: ListView.builder(
-        itemCount: todos.length,
-        itemBuilder: (context, index) {
-          bool finished = todos[index].finished is String
-              ? todos[index].finished.toLowerCase() == 'true'
-              : todos[index].finished as bool;
-
-          return CheckboxListTile(
-            controlAffinity:
-                ListTileControlAffinity.leading, // Placing checkbox on the left
-            title: Text(todos[index].title),
-            value: finished,
-            onChanged:
-                (bool? value) {}, // Use the finished value from the todo item
-          );
+      body: FutureBuilder<List<Todo>>(
+        future: _todosFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            List<Todo> todos = snapshot.data!;
+            return ListView.builder(
+              itemCount: todos.length,
+              itemBuilder: (context, index) {
+                return CheckboxListTile(
+                  controlAffinity: ListTileControlAffinity.leading,
+                  title: Text(todos[index].title),
+                  value: todos[index].finished,
+                  onChanged: (bool? value) {
+                  },
+                );
+              },
+            );
+          }
         },
       ),
     );
