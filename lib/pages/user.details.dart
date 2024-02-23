@@ -43,7 +43,6 @@ class UserDetailsScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: ElevatedButton(
                 onPressed: () {
-                  // Ensure user.todos is not null before navigating to UserTodoScreen
                   Navigator.push(
                     context,
                     MaterialPageRoute(

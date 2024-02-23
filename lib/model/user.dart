@@ -12,7 +12,7 @@ class User {
   final String website;
   final Address address;
   final Company company;
-  final List<Todo> todos; // Changed type to List<Todo>
+  final List<Todo> todos;
 
   User({
     required this.id,

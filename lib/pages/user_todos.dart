@@ -15,8 +15,6 @@ class UserTodoScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: todos.length,
         itemBuilder: (context, index) {
-          // Convert string "true" or "false" to boolean value
-          // ignore: unnecessary_type_check
           bool finished = todos[index].finished is String
               ? todos[index].finished.toLowerCase() == 'true'
               : todos[index].finished as bool;
