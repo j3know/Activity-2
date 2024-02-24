@@ -1,9 +1,6 @@
-
-
-part 'package:restapi/model/address.dart';
-part 'package:restapi/model/company.dart';
-part 'package:restapi/model/geo.dart';
-
+part 'address.dart';
+part 'company.dart';
+part 'geo.dart';
 
 class User {
   final int id;
@@ -27,6 +24,8 @@ class User {
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
+    // Extracting todos from JSON
+
     return User(
       id: json['id'],
       name: json['name'],
