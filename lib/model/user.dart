@@ -3,24 +3,26 @@ part 'company.dart';
 part 'geo.dart';
 
 class User {
-  final int id;
-  final String name;
-  final String email;
-  final String username;
-  final String phone;
-  final String website;
-  final Address address;
-  final Company company;
+  final int? id;
+  final String? name;
+  final String? email;
+  final String? username;
+  final String? phone;
+  final String? website;
+  final Address? address;
+  final Company? company;
+
+  var todos;
 
   User({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.username,
-    required this.phone,
-    required this.website,
-    required this.address,
-    required this.company,
+    this.id,
+    this.name,
+    this.email,
+    this.username,
+    this.phone,
+    this.website,
+    this.address,
+    this.company,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {

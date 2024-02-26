@@ -20,8 +20,7 @@ class _UserTodoScreenState extends State<UserTodoScreen> {
   }
 
   Future<List<Todo>> fetchTodos() async {
-    final response =
-        await http.get(Uri.parse('http://192.168.1.211:3001/todos'));
+    final response = await http.get(Uri.parse('http://10.0.2.2:3002/todo'));
     if (response.statusCode == 200) {
       List<dynamic> data = jsonDecode(response.body)['todos'];
       List<Todo> todos = data.map((item) => Todo.fromJson(item)).toList();
@@ -53,8 +52,7 @@ class _UserTodoScreenState extends State<UserTodoScreen> {
                   controlAffinity: ListTileControlAffinity.leading,
                   title: Text(todos[index].title),
                   value: todos[index].finished,
-                  onChanged: (bool? value) {
-                  },
+                  onChanged: (bool? value) {},
                 );
               },
             );

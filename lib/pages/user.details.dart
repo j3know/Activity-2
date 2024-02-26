@@ -19,25 +19,10 @@ class UserDetailsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-             Text('ID: ${user.id}'),
+            Text('ID: ${user.id}'),
             const SizedBox(height: 8),
             Text('Name: ${user.name}'),
-            const SizedBox(height: 8),
-            Text('Email: ${user.email}'),
-            const SizedBox(height: 8),
-            Text('Username: ${user.username}'),
-            const SizedBox(height: 8),
-            Text('Phone: ${user.phone}'),
-            const SizedBox(height: 8),
-            Text('Website: ${user.website}'),
-            const SizedBox(height: 8),
-            Text(
-                'Address: ${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}'),
-            const SizedBox(height: 8),
-            Text('Geo: ${user.address.geo.lat}, ${user.address.geo.lng}'),
-            const SizedBox(height: 8),
-            Text(
-                'Company: ${user.company.name}, ${user.company.catchPhrase}, ${user.company.bs}'),
+            // ... (other details)
             const Spacer(),
             Align(
               alignment: Alignment.bottomCenter,
@@ -46,8 +31,8 @@ class UserDetailsScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const UserTodoScreen(
-                        todos: [],
+                      builder: (context) => UserTodoScreen(
+                        todos: user.todos, // Pass the actual list of todos
                       ),
                     ),
                   );

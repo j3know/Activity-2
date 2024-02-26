@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:convert'; // No need to import 'dart:convert' again
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -9,8 +9,9 @@ class UserListScreen extends StatefulWidget {
   const UserListScreen({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _UserListScreenState createState() => _UserListScreenState();
+
+  fetchTask() {}
 }
 
 class _UserListScreenState extends State<UserListScreen> {
@@ -24,7 +25,7 @@ class _UserListScreenState extends State<UserListScreen> {
 
   Future<List<User>> fetchUsers() async {
     final response =
-        await http.get(Uri.parse('http://192.168.1.211:3001/usergenerator'));
+        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
 
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
@@ -52,7 +53,9 @@ class _UserListScreenState extends State<UserListScreen> {
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(snapshot.data![index].name),
+                  title: Text(snapshot.data![index].name ??
+                      ' '), // Fixed the ListTile syntax
+
                   onTap: () {
                     Navigator.push(
                       context,
